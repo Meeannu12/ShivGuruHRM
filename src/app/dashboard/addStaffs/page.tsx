@@ -3,34 +3,42 @@
 import { useEffect, useState } from "react";
 
 // const roles = ["ceo", "cfo", "hr", "manager", "employee"];
-const [roles, setRoles] = useState<string[]>([]);
-const jobTypes = ["full-time", "part-time", "contract"];
-
 export default function AddStaffPage() {
-  const [form, setForm] = useState({
+  const [roles, setRoles] = useState<string[]>([]);
+  const jobTypes = ["full-time", "part-time", "contract"];
+
+  type FormState = {
+    name: string;
+    number: string;
+    email: string;
+    staffId: string;
+    role: string;
+    designation: string;
+    password: string;
+    joinDate: string;
+    job_type: string;
+  };
+
+  const initialFormState: FormState = {
     name: "",
     number: "",
     email: "",
     staffId: "",
-    // isActive: true,
     role: "",
     designation: "",
     password: "",
     joinDate: "",
-    job_type: "full-time",
-  });
+    job_type: "",
+  };
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-  //   const { name, value, type, checked } = e.target;
-  //   setForm((prev) => ({
-  //     ...prev,
-  //     [name]: type === "checkbox" ? checked : value,
-  //   }));
-  // };
+  const [form, setForm] = useState<FormState>(initialFormState);
 
   useEffect(() => {
     // localStorage se current user role lena
-    const currentRole = localStorage.getItem("role");
+    const storedUser = localStorage.getItem("user");
+    const currentRole = storedUser ? JSON.parse(storedUser).role : null;
+
+    console.log("rolesss", currentRole);
 
     if (currentRole === "hr") {
       setRoles(["hr", "manager", "employee"]);
@@ -61,10 +69,13 @@ export default function AddStaffPage() {
     e.preventDefault();
     // For now just log form data
     console.log("Submitting staff data:", form);
+    // const response = 
     // After processing the form data (e.g., sending it to a server),
     // reset the state by setting it back to the initial state.
     // setForm();
     // TODO: call your Add Staff API here
+    // success → empty form
+    setForm(initialFormState);
   };
 
   return (
