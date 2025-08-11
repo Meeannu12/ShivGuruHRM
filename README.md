@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+| Folder/File   | Purpose                                                |
+| ------------- | ------------------------------------------------------ |
+| `app/`        | Main routing & server components (App Router)          |
+| `components/` | Reusable UI like `Button`, `Input`, `Card`             |
+| `lib/`        | Logic modules: API clients, Firebase, validation, etc. |
+| `hooks/`      | Custom React hooks like `useAuth`, `useForm`           |
+| `context/`    | Global context providers like `AuthProvider`           |
+| `public/`     | Static assets: images, fonts                           |
+| `.env.local`  | API keys, base URLs, etc. (never commit this)          |
+| `globals.css` | Tailwind or global style definitions                   |
+
+
+| Folder          | Use Case                                   |
+| --------------- | ------------------------------------------ |
+| `middleware.ts` | Route protection, JWT middleware           |
+| `store/`        | Zustand, Redux, or Jotai store             |
+| `services/`     | Backend API integration (axios calls etc.) |
+| `schemas/`      | Zod or Yup validation schemas              |
+| `types/`        | TypeScript types & interfaces              |
+| `constants/`    | Static values: roles, routes, config       |
+
