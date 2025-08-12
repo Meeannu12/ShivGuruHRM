@@ -1,5 +1,6 @@
 "use client"; // for Next.js 13+ app directory to use React hooks
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 // const roles = ["ceo", "cfo", "hr", "manager", "employee"];
@@ -35,7 +36,7 @@ export default function AddStaffPage() {
 
   useEffect(() => {
     // localStorage se current user role lena
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("staff");
     const currentRole = storedUser ? JSON.parse(storedUser).role : null;
 
     console.log("rolesss", currentRole);
@@ -65,17 +66,35 @@ export default function AddStaffPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // For now just log form data
-    console.log("Submitting staff data:", form);
-    // const response = 
+    const token = localStorage.getItem("token");
+    // console.log("Submitting staff data:", token, form);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/staff/createStaff",
+        form,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("staff created successful", response.data);
+    } catch (error: any) {
+      console.log("addStaff", error.message);
+    } finally {
+      setForm(initialFormState);
+    }
     // After processing the form data (e.g., sending it to a server),
     // reset the state by setting it back to the initial state.
     // setForm();
     // TODO: call your Add Staff API here
     // success → empty form
-    setForm(initialFormState);
   };
 
   return (

@@ -27,11 +27,9 @@ export default function LoginPage() {
         "http://localhost:4000/api/staff/staffLogin",
         formData
       );
-      // setResponse(res.data.message);
-      // console.log("response", res.data);
-      // if (typeof window !== "undefined") {
-      localStorage.setItem("user", JSON.stringify(res.data.staff));
-      // }
+
+      localStorage.setItem("staff", JSON.stringify(res.data.staff));
+      localStorage.setItem("token", res.data.token);
       // toast.success("Login successful!", { position: "top-right" });
       router.push("/dashboard");
     } catch (err: any) {

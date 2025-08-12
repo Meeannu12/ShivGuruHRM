@@ -1,7 +1,5 @@
 "use client"; // <-- this makes it run on the client
-// hooks/useAuth.ts
 import { useEffect, useState } from "react";
-// import { useRouter } from "next/router";
 import { useRouter } from "next/navigation"; // ✅ App Router import
 import { toast } from "react-toastify";
 
@@ -11,7 +9,7 @@ export function useAuth() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("user");
+      const storedUser = localStorage.getItem("staff");
 
       if (!storedUser) {
         toast.error("This page does not exist. Please log in.", {

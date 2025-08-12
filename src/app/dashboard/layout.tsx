@@ -17,10 +17,15 @@ const menuItems: MenuItem[] = [
     href: "/dashboard/addStaffs",
     roles: ["eco", "ceo", "hr"],
   },
+  {
+    name: "All Staff",
+    href: "/dashboard/getStaffs",
+    roles: ["eco", "ceo", "hr"],
+  },
   { name: "Reports", href: "/dashboard/reports", roles: ["eco", "ceo"] },
   { name: "Settings", href: "/dashboard/settings", roles: ["ceo", "eco"] },
   { name: "Profile", href: "/dashboard/profile", roles: ["ceo", "eco"] },
-  { name: "Logout", href: "/login", roles: ["eco", "ceo"] },
+  { name: "Logout", href: "/login", roles: ["eco", "ceo", "hr"] },
 ];
 
 export default function DashboardLayout({
